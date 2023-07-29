@@ -403,3 +403,11 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+zookeeper/
+
+sqlserver_data/
+
+mongo_db/
+
+kafka_data/

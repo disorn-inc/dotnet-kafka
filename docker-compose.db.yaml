@@ -1,0 +1,84 @@
+version: "3.7"
+
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+    volumes: 
+      - ./zookeeper/data:/var/lib/zookeeper/data
+      - ./zookeeper/log:/var/lib/zookeeper/log
+  
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    depends_on:
+      - zookeeper
+    ports:
+      - 9092:9092
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+    volumes: 
+      - ./kafka_data:/var/lib/kafka/data
+  # zookeeper:
+  #   image: bitnami/zookeeper
+  #   container_name: zookeeper
+  #   restart: always
+    
+  #   ports:
+  #     - "2181:2181"
+  #   volumes:
+  #     - "./zookeeper_data:/bitnami"
+  #   environment:
+  #     - ALLOW_ANONYMOUS_LOGIN=yes
+  # kafka:
+  #   image: bitnami/kafka
+  #   container_name: kafka
+  #   ports:
+  #     - "9092:9092"
+  #   restart: always
+  #   volumes:
+  #     - "./kafka_data:/bitnami"
+  #   environment:
+  #     - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+  #     - ALLOW_PLAINTEXT_LISTENER=yes
+  #     - KAFKA_LISTENERS=PLAINTEXT://:9092
+  #     - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://localhost:9092
+  #   depends_on:
+  #     - zookeeper
+
+  mongo:
+    image: mongo:4.4
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=123456
+      - MONGO_INITDB_DATABASE=example
+      - MONGO_INITDB_USERNAME=disorn
+      - MONGO_INITDB_PASSWORD=111111
+    volumes:
+      - ./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh
+      - ./mongo_db:/data/db
+
+  sqlserver:
+    image: mcr.microsoft.com/azure-sql-edge
+    container_name: sqlserver
+    restart: always
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=1
+      - SA_PASSWORD=$tr0ngS@P@ssw0rd02
+      - MSSQL_PID=Express
+    volumes:
+      - ./sqlserver_data:/var/opt/mssql
+
+
