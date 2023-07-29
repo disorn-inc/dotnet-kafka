@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS.Core", "..\CQRS-ES\CQR
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Post.Query.Api", "Post.Query\Post.Query.Api\Post.Query.Api.csproj", "{6DC489BD-70C3-47EA-955A-34E3D3F19E27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Post.Query.Domain", "Post.Query\Post.Query.Domain\Post.Query.Domain.csproj", "{298698B0-261F-4AE8-BBAB-3947B2AF0FC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{6DC489BD-70C3-47EA-955A-34E3D3F19E27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DC489BD-70C3-47EA-955A-34E3D3F19E27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DC489BD-70C3-47EA-955A-34E3D3F19E27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{298698B0-261F-4AE8-BBAB-3947B2AF0FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{298698B0-261F-4AE8-BBAB-3947B2AF0FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{298698B0-261F-4AE8-BBAB-3947B2AF0FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{298698B0-261F-4AE8-BBAB-3947B2AF0FC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
