@@ -12,9 +12,11 @@
   <ItemGroup>
     <None Remove="Messages\" />
     <None Remove="Commands\" />
+    <None Remove="Events\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Messages\" />
     <Folder Include="Commands\" />
+    <Folder Include="Events\" />
   </ItemGroup>
 </Project>
